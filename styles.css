@@ -16,6 +16,8 @@ body {
     justify-content: center;
     align-items: center;
     margin-top: 5%;
+
+    position: relative;
 }
 
 .container {
@@ -29,6 +31,8 @@ body {
     gap: 1.8rem;
     padding: 2.4rem;
     border-radius: 11px;
+
+
 }
 
 .form {
@@ -62,3 +66,34 @@ body {
     background-color: #f1f3f5;
 }
 
+.user-input > input:hover,
+.user-input > select:hover {
+    border: 1px solid;
+}
+
+
+/* Add button styling */
+.add-button {
+  align-self: center;
+
+ 
+}
+
+.add-button > button {
+    font-size: 2.2rem;
+    font-family: inherit;
+    padding: 5px 40px;
+
+    border: none;
+    border-radius: 9px;
+    -webkit-box-shadow: -2px 5px 25px 4px rgba(125,195,255,0.94); 
+    box-shadow: -2px 5px 25px 4px rgba(43, 46, 48, 0.94);
+
+    cursor: pointer;
+    
+}
+
+
+.add-button:hover {
+    transform: scale(1.2);
+}
