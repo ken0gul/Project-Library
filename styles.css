@@ -33,6 +33,9 @@ body {
     border-radius: 11px;
 
 
+    display: none;
+
+
 }
 
 .form {
@@ -96,4 +99,36 @@ body {
 
 .add-button:hover {
     transform: scale(1.2);
+}
+
+
+/* Card */
+.card {
+    display: flex;
+    flex-direction: column;
+
+
+    width: 300px;
+    height: auto;
+
+    font-size: 2.8rem;
+    padding:1.2rem;
+    border-radius: 9px;
+
+    
+    background-color: #e9ecef;
+    color: #191C1F;
+
+
+}
+
+.card > span {
+    display: inline-block;
+    text-align: center;
+
+    /* Border */
+    border: 3px solid white;
+    border-top: none;
+    border-left: none;
+    border-right: none;
 }
