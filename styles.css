@@ -13,11 +13,14 @@ html {
 
 body {
     display: flex;
-    justify-content: center;
-    align-items: center;
+    justify-content:space-around;
+    align-items: flex-start ;
+    flex-wrap: nowrap;
     margin-top: 5%;
 
-    position: relative;
+
+    padding: 2.4rem;
+    transition: all 0.5s ease-in-out;
 }
 
 .container {
@@ -31,10 +34,13 @@ body {
     gap: 1.8rem;
     padding: 2.4rem;
     border-radius: 11px;
+    transition: all 0.5s ease-in;
 
 
-    display: none;
+    
 
+    /* display: none; */
+    justify-self: flex-end;
 
 }
 
@@ -65,6 +71,7 @@ body {
 .user-input > select {
     padding: 1.2rem;
     border: none;
+    font-size: 2.2rem;
     
     background-color: #f1f3f5;
 }
@@ -104,31 +111,65 @@ body {
 
 /* Card */
 .card {
-    display: flex;
+    display: none;
     flex-direction: column;
 
 
-    width: 300px;
-    height: auto;
-
-    font-size: 2.8rem;
+    font-size: 1.8rem;
     padding:1.2rem;
     border-radius: 9px;
-
     
-    background-color: #e9ecef;
+    background-color: #F4EFEE;
     color: #191C1F;
+    box-shadow: 0px 10px 15px -3px rgba(0,0,0,0.1),0px 10px 15px -3px rgba(0,0,0,0.1),0px 10px 15px -3px rgba(0,0,0,0.1);   
 
 
 }
 
-.card > span {
-    display: inline-block;
-    text-align: center;
+.wrapper {
+    display: grid;
+    grid-template-columns: repeat(auto-fill,minmax(200px, 1fr));
+    grid-template-rows: auto;
+    grid-auto-flow: dense;
+    align-items: start;
+    gap: 15px;
+
+    border: 1px solid;
+    overflow: hidden;
+    max-width: 110rem;
+    padding: 2.4rem;
+    border-radius: 9px;
+
+    flex: 1;
+    height: 732px;
+
+
+
+    -webkit-box-shadow: -2px 5px 25px 4px rgba(125,195,255,0.94); 
+    box-shadow: -2px 5px 25px 4px rgba(43, 46, 48, 0.94);
+}
+
+.card > .single-item > span:first-child {
+    
 
     /* Border */
     border: 3px solid white;
     border-top: none;
     border-left: none;
     border-right: none;
+}
+
+
+.single-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+
+
+}
+
+.card .single_item_title {
+    font-size: 2.6rem;
 }
