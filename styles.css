@@ -179,7 +179,7 @@ body {
     font-size: 2.6rem;
 }
 
-#cancel-icon {
+.cancel-icon {
     align-self: flex-end;
     width: 2.4rem;
     height: 2.4rem;
