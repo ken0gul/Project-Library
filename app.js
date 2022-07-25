@@ -5,7 +5,7 @@ const inputPages = document.querySelector('#pages');
 const inputIsRead = document.querySelector('#read');
 const addBtn = document.querySelector('.add-button > button');
 const container = document.querySelector('.container');
-
+const plusIcon = document.querySelector('.plus-icon');
 
 
 
@@ -40,6 +40,9 @@ function addBook(e) {
     inputPages.value = "";
     inputIsRead.value = "";
 
+    let wrapper = document.querySelector('.wrapper')
+    wrapper.style.display ='grid';
+    container.style.display = 'none';
 
     return newBook
 }
@@ -111,3 +114,10 @@ cardID.querySelectorAll('.cancel-icon').forEach(el => {
 
 // Button functionality
 addBtn.addEventListener('click', addBook)
+
+// Plus Icon
+plusIcon.addEventListener('click', () => {
+    let wrapper= document.querySelector('.wrapper');
+    wrapper.style.display = 'none';
+    container.style.display = 'flex'
+})
