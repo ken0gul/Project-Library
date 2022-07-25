@@ -13,10 +13,11 @@ html {
 
 body {
     display: flex;
+    position: relative;
     justify-content:space-around;
     align-items: flex-start ;
     flex-wrap: nowrap;
-    margin-top: 5%;
+    /* margin-top: 5%; */
 
 
     padding: 2.4rem;
@@ -24,12 +25,13 @@ body {
 }
 
 .container {
+
     font-size: 2.8rem;
     background-color: #FEFEFE;
     -webkit-box-shadow: -2px 5px 25px 4px rgba(125,195,255,0.94); 
     box-shadow: -2px 5px 25px 4px rgba(43, 46, 48, 0.94);
 
-    display: flex;
+    display: none;
     flex-direction: column;
     gap: 1.8rem;
     padding: 2.4rem;
@@ -184,4 +186,14 @@ body {
     width: 2.4rem;
     height: 2.4rem;
     cursor: pointer;
+}
+
+
+.plus-icon {
+    width: 36px;
+    height: 36px;
+
+    position: absolute;
+    top: 5px;
+    left: 5px;
 }
