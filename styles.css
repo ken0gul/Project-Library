@@ -12,19 +12,29 @@ html {
 }
 
 body {
-    display: flex;
-    position: relative;
-    justify-content:space-around;
-    align-items: flex-start ;
-    flex-wrap: nowrap;
+    display: grid;
+    grid-template-columns: 1fr;
+    justify-content:center;
+    justify-items: center;
+    /* flex-wrap: nowrap; */
     /* margin-top: 5%; */
 
 
-    padding: 2.4rem;
-    transition: all 0.5s ease-in-out;
 }
 
-.container {
+.header {
+    width: 100%;
+    padding: 2.4rem;
+    margin-bottom: 2.4rem;
+    font-size: 2.2rem;
+    text-transform: uppercase;
+    background-color: bisque;
+
+    position: relative;
+}
+
+
+    .container {
 
     font-size: 2.8rem;
     background-color: #FEFEFE;
@@ -36,13 +46,14 @@ body {
     gap: 1.8rem;
     padding: 2.4rem;
     border-radius: 11px;
-    transition: all 0.5s ease-in;
+
+
 
 
     
 
     /* display: none; */
-    justify-self: flex-end;
+    justify-self: center;
 
 }
 
@@ -124,7 +135,7 @@ body {
     background-color: #F4EFEE;
     color: #191C1F;
     box-shadow: 0px 10px 15px -3px rgba(0,0,0,0.1),0px 10px 15px -3px rgba(0,0,0,0.1),0px 10px 15px -3px rgba(0,0,0,0.1);   
-    transition: all 0.8s;
+    transition: all 0.8s ease;
 
 }
 
@@ -141,17 +152,16 @@ body {
     align-items: start;
     gap: 15px;
 
-    border: 1px solid;
     overflow: hidden;
     max-width: 110rem;
     padding: 2.4rem;
+    margin-left: 1.2rem;
     border-radius: 9px;
 
-    flex: 1;
     height: 780px;
+    justify-self: start;
 
-
-
+    transition: all 0.6s ease;
     -webkit-box-shadow: -2px 5px 25px 4px rgba(125,195,255,0.94); 
     box-shadow: -2px 5px 25px 4px rgba(43, 46, 48, 0.94);
 }
@@ -190,10 +200,13 @@ body {
 
 
 .plus-icon {
-    width: 36px;
-    height: 36px;
+    border: none;
+    
+    width: 40px;
+    height: 40px;
 
     position: absolute;
-    top: 5px;
-    left: 5px;
+    top: 30px;
+    right: 5px;
+    cursor: pointer;
 }
