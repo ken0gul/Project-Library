@@ -30,8 +30,10 @@ let itemID;
 function addBook(e) {
      itemID = new Date().getMilliseconds();
     if(myLibrary.length >= 8) return;
-
- 
+    if (inputTitle.value === "") return;
+    if (inputAuthor.value === "") return;
+    if (inputPages.value === "") return;
+    if (inputIsRead.value === "") return;
     let newBook = new Book(inputTitle.value,inputAuthor.value,inputPages.value,inputIsRead.value,itemID,isEditing);
     myLibrary.push(newBook)
     displayBooks()
@@ -84,12 +86,12 @@ function displayBooks() {
         </div>
         <div class="single-item">
         <span class="single_item_title">Read</span>
-        <span class="is-read">${book.isRead}</span>
+        <span class="is-read">${book.isRead === " " ? "Yes" : book.isRead}</span>
         </div>
 
         
         <label class="switch">
-            <input type="checkbox">
+            <input type="checkbox" ${book.isRead === "Yes" ? "checked" : ""}>
             <span class="slider round"></span>
                 </label>
         </div>
@@ -139,7 +141,7 @@ cardID.style.display = "flex";
 cardID.querySelectorAll('.cancel-icon').forEach(el => {
     el.addEventListener('click', (e) => {
         const currentCard = e.currentTarget.parentElement;
-        currentCard.remove()
+        console.log(currentCard.parentElement.remove())
        let removed = myLibrary.find(item => {
             let removed = item.id;
             return removed;
