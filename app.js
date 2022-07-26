@@ -30,8 +30,7 @@ function addBook(e) {
      itemID = new Date().getDate();
     if(myLibrary.length >= 8) return;
 
-    if(inputTitle.value === "" || inputAuthor.value === "" || inputPages.value === "" || inputIsRead.value === "") return; 
-    
+ 
     let newBook = new Book(inputTitle.value,inputAuthor.value,inputPages.value,inputIsRead.value,itemID);
     myLibrary.push(newBook)
     displayBooks()
@@ -46,8 +45,9 @@ function addBook(e) {
 
     return newBook
 }
-const wrapper = `<div class="wrapper"></div>`
-    document.body.insertAdjacentHTML('afterbegin', wrapper)
+const wrapper = `<div class="wrapper"></div>`;
+ const header = document.querySelector('.header');
+    document.body.insertAdjacentHTML('beforeend', wrapper)
 
 function displayBooks() {
     let card;
@@ -57,11 +57,18 @@ function displayBooks() {
     myLibrary.forEach(book => {
        
          card =`
+
+      
    
         <div class="card" data-id="${itemID}">
-        <svg xmlns="http://www.w3.org/2000/svg"  class="h-6 w-6 cancel-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <div class="icons">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 edit-icon icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+  <path stroke-linecap="round" stroke-linejoin="round" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+</svg>
+        <svg xmlns="http://www.w3.org/2000/svg"  class="h-6 w-6 cancel-icon icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
         <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
       </svg>
+      </div>
         <div class="single-item">
         <span class="single_item_title">Title</span>
         <span>${book.title}</span>
@@ -83,7 +90,7 @@ function displayBooks() {
 
     })
 
-document.querySelector('.wrapper').insertAdjacentHTML("afterbegin", card);
+document.querySelector('.wrapper').insertAdjacentHTML("beforeend", card);
 document.body.style.justifyContent = 'space-around'
 
 // Let's select that card..
@@ -120,4 +127,5 @@ plusIcon.addEventListener('click', () => {
     let wrapper= document.querySelector('.wrapper');
     wrapper.style.display = 'none';
     container.style.display = 'flex'
+
 })
