@@ -198,11 +198,24 @@ body {
     font-size: 2.6rem;
 }
 
-.cancel-icon {
-    align-self: flex-end;
+.icons {
+    display: flex;
+    justify-content: space-between;
+}
+
+.icon {
     width: 2.4rem;
     height: 2.4rem;
     cursor: pointer;
+}
+
+.edit-icon {
+    align-self: flex-start;
+}
+
+.cancel-icon {
+    align-self: flex-end;
+    
 }
 
 
