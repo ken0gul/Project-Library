@@ -84,8 +84,14 @@ function displayBooks() {
         </div>
         <div class="single-item">
         <span class="single_item_title">Read</span>
-        <span>${book.isRead}</span>
+        <span class="is-read">${book.isRead}</span>
         </div>
+
+        
+        <label class="switch">
+            <input type="checkbox">
+            <span class="slider round"></span>
+                </label>
         </div>
         `
 
@@ -147,6 +153,27 @@ cardID.querySelectorAll('.cancel-icon').forEach(el => {
 //Adding an event listener to edit-icon
 cardID.querySelectorAll('.edit-icon').forEach(el => {
     el.addEventListener('click', editItem);
+})
+
+
+cardID.querySelectorAll('.switch').forEach(toggle => {
+    toggle.addEventListener('change', e => {
+        let currentCard = e.currentTarget.parentElement;
+        let currentItem = myLibrary.find(item => {
+            return item.id === +currentCard.dataset.id;
+        })
+
+        if(currentItem.isRead === "Yes") {
+            currentItem.isRead = "No";
+            let currentStatus = e.target.parentElement.previousElementSibling.lastElementChild;
+            currentStatus.textContent = "No";
+        }
+        else if (currentItem.isRead === "No") {
+            currentItem.isRead = "Yes";
+           let currentStatus = e.target.parentElement.previousElementSibling.lastElementChild;
+           currentStatus.textContent = "Yes"
+        }
+    })
 })
 
 }
