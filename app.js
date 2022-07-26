@@ -6,19 +6,20 @@ const inputIsRead = document.querySelector('#read');
 const addBtn = document.querySelector('.add-button > button');
 const container = document.querySelector('.container');
 const plusIcon = document.querySelector('.plus-icon');
-
+let isEditing = false;
 
 
 // Creating the first book or the array
 let myLibrary = [];
 
 // Constructor function to create book instances
-function Book(title,author,pages,isRead,id) {
+function Book(title,author,pages,isRead,id,isEdited) {
     this.title = title;
     this.author = author;
     this.pages = pages;
     this.isRead = isRead;
     this.id = id;
+    this.isEdited = isEdited;
 }
 
 // Function to take user's input and create an instance then store it to myLibrary array
@@ -27,11 +28,11 @@ function Book(title,author,pages,isRead,id) {
 let index;
 let itemID;
 function addBook(e) {
-     itemID = new Date().getDate();
+     itemID = new Date().getMilliseconds();
     if(myLibrary.length >= 8) return;
 
  
-    let newBook = new Book(inputTitle.value,inputAuthor.value,inputPages.value,inputIsRead.value,itemID);
+    let newBook = new Book(inputTitle.value,inputAuthor.value,inputPages.value,inputIsRead.value,itemID,isEditing);
     myLibrary.push(newBook)
     displayBooks()
     inputTitle.value = "";
@@ -90,7 +91,37 @@ function displayBooks() {
 
     })
 
-document.querySelector('.wrapper').insertAdjacentHTML("beforeend", card);
+
+    function editItem(e) {
+        let currentCard = e.currentTarget.parentElement.parentElement;
+        let currentCardID = e.currentTarget.parentElement.parentElement.dataset.id;
+        currentCardID = +currentCardID;
+        myLibrary.forEach(book => {
+            if(book.id === currentCardID) {
+                isEditing = true;
+                let wrapper= document.querySelector('.wrapper');
+                wrapper.style.display = 'none';
+                container.style.display = 'flex';
+                // Select each input to edit
+                let title = container.querySelector('input[id="title"]');
+                let author = container.querySelector('input[id="author"]');
+                let pages = container.querySelector('input[id="pages"]');
+                let read = container.querySelector('select[id="read"]');
+                
+                title.value = book.title;
+                author.value = book.author;
+                pages.value = book.pages;
+                read.value = book.isRead;
+
+                currentCard.remove();
+                let removed = myLibrary.find(item => item.id === currentCardID);
+                myLibrary.splice(removed,1);
+                
+            }
+        })
+    }
+
+document.querySelector('.wrapper').insertAdjacentHTML("afterbegin", card);
 document.body.style.justifyContent = 'space-around'
 
 // Let's select that card..
@@ -111,6 +142,11 @@ cardID.querySelectorAll('.cancel-icon').forEach(el => {
         myLibrary.splice(removed, 1)
         console.log(myLibrary)
     })
+})
+
+//Adding an event listener to edit-icon
+cardID.querySelectorAll('.edit-icon').forEach(el => {
+    el.addEventListener('click', editItem);
 })
 
 }
