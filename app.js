@@ -91,7 +91,7 @@ function displayBooks() {
 
         
         <label class="switch">
-            <input type="checkbox" ${book.isRead === "Yes" ? "checked" : ""}>
+            <input type="checkbox" ${book.isRead}>
             <span class="slider round"></span>
                 </label>
         </div>
@@ -141,7 +141,7 @@ cardID.style.display = "flex";
 cardID.querySelectorAll('.cancel-icon').forEach(el => {
     el.addEventListener('click', (e) => {
         const currentCard = e.currentTarget.parentElement;
-        console.log(currentCard.parentElement.remove())
+        currentCard.parentElement.remove()
        let removed = myLibrary.find(item => {
             let removed = item.id;
             return removed;
