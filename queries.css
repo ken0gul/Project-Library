@@ -21,4 +21,15 @@
     .header h2 {
         text-align: center;
     }
+
+    .wrapper {
+        grid-template-columns: 1fr;
+        justify-content: center;
+        align-content: start;
+        padding: 10px 120px;
+    }
+
+    .plus-icon {
+        right: 50px;
+    }
 }
