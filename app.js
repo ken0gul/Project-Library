@@ -6,8 +6,11 @@ const inputIsRead = document.querySelector('#read');
 const addBtn = document.querySelector('.add-button > button');
 const container = document.querySelector('.container');
 const plusIcon = document.querySelector('.plus-icon');
-let isEditing = false;
 
+// Global variables
+let isEditing = false;
+let index;
+let itemID;
 
 // Creating the first book or the array
 let myLibrary = [];
@@ -24,9 +27,7 @@ function Book(title,author,pages,isRead,id,isEdited) {
 
 // Function to take user's input and create an instance then store it to myLibrary array
 
-// Global Index
-let index;
-let itemID;
+
 function addBook(e) {
      itemID = new Date().getMilliseconds();
     if(myLibrary.length >= 8) return;
