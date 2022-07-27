@@ -1,0 +1,9 @@
+@media screen and (max-width: 76em){
+    .wrapper {
+        width: 80em;
+    }
+
+    html {
+        font-size: 55%;
+    }
+}
