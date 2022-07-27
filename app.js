@@ -168,11 +168,19 @@ cardID.querySelectorAll('.switch').forEach(toggle => {
 
 }
 
+// ESC Key Functionality / When pressed things turn to its original state
+document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') {
+        let wrapper = document.querySelector('.wrapper')
+        container.style.display = 'none';
+        wrapper.style.display = 'grid';
+    } 
+})
 
 
 
 
-// Button functionality
+// Add book event listener
 addBtn.addEventListener('click', addBook)
 
 // Plus Icon
