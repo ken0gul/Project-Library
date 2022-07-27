@@ -49,9 +49,12 @@ function addBook(e) {
 
     return newBook
 }
-const wrapper = `<div class="wrapper"></div>`;
- const header = document.querySelector('.header');
-    document.body.insertAdjacentHTML('beforeend', wrapper)
+
+    const wrapper = `<div class="wrapper"></div>`;
+    const header = document.querySelector('.header');
+    document.body.insertAdjacentHTML('beforeend', wrapper);
+
+    
 
 function displayBooks() {
     let card;
@@ -102,15 +105,23 @@ function displayBooks() {
 
 
     function editItem(e) {
+        // Select the currentCard when clicked
         let currentCard = e.currentTarget.parentElement.parentElement;
+
+        // Get its data-id
         let currentCardID = e.currentTarget.parentElement.parentElement.dataset.id;
+
+        // Convert it to a number so that they match with book.id
         currentCardID = +currentCardID;
+
         myLibrary.forEach(book => {
             if(book.id === currentCardID) {
                 isEditing = true;
+
                 let wrapper= document.querySelector('.wrapper');
                 wrapper.style.display = 'none';
                 container.style.display = 'flex';
+
                 // Select each input to edit
                 let title = container.querySelector('input[id="title"]');
                 let author = container.querySelector('input[id="author"]');
@@ -121,7 +132,9 @@ function displayBooks() {
                 author.value = book.author;
                 pages.value = book.pages;
                 read.value = book.isRead;
-
+                
+                // Remove the current card to put a edited one instead
+                // The bug here is that id of the book changes everytime we edit it
                 currentCard.remove();
                 let removed = myLibrary.find(item => item.id === currentCardID);
                 myLibrary.splice(removed,1);
