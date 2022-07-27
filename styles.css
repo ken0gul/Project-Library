@@ -157,6 +157,7 @@ body {
     grid-template-rows: auto;
     grid-auto-flow: dense;
     align-items: start;
+    resize:both;
     gap: 15px;
 
     overflow: hidden;
