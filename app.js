@@ -140,17 +140,7 @@ cardID.style.display = "flex";
 
 // Adding an event listener to cancel-icon
 cardID.querySelectorAll('.cancel-icon').forEach(el => {
-    el.addEventListener('click', (e) => {
-        const currentCard = e.currentTarget.parentElement;
-        currentCard.parentElement.remove()
-       let removed = myLibrary.find(item => {
-            let removed = item.id;
-            return removed;
-            
-        })
-        myLibrary.splice(removed, 1)
-        console.log(myLibrary)
-    })
+    el.addEventListener('click', removeItem);
 })
 
 //Adding an event listener to edit-icon
@@ -195,3 +185,17 @@ plusIcon.addEventListener('click', () => {
     container.style.display = 'flex'
 
 })
+
+
+
+// Remove item function
+function removeItem(e) {
+    const currentCard = e.currentTarget.parentElement;
+    currentCard.parentElement.remove()
+   let removed = myLibrary.find(item => {
+        let removed = item.id;
+        return removed;
+        
+    })
+    myLibrary.splice(removed, 1)
+}
