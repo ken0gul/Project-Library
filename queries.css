@@ -7,3 +7,18 @@
         font-size: 55%;
     }
 }
+
+
+@media screen and (max-width: 50em) {
+    html {
+        font-size: 50%;
+    }
+
+    .container form {
+        width: 30rem;
+    }
+
+    .header h2 {
+        text-align: center;
+    }
+}
