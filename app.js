@@ -177,6 +177,12 @@ document.addEventListener('keydown', e => {
     } 
 })
 
+// Random click to add card
+document.addEventListener('click', () => {
+    let wrapper = document.querySelector('.wrapper')
+    container.style.display = 'flex';
+    wrapper.style.display = 'none';
+})
 
 
 
