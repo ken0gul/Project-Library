@@ -150,23 +150,7 @@ cardID.querySelectorAll('.edit-icon').forEach(el => {
 
 
 cardID.querySelectorAll('.switch').forEach(toggle => {
-    toggle.addEventListener('change', e => {
-        let currentCard = e.currentTarget.parentElement;
-        let currentItem = myLibrary.find(item => {
-            return item.id === +currentCard.dataset.id;
-        })
-
-        if(currentItem.isRead === "Yes") {
-            currentItem.isRead = "No";
-            let currentStatus = e.target.parentElement.previousElementSibling.lastElementChild;
-            currentStatus.textContent = "No";
-        }
-        else if (currentItem.isRead === "No") {
-            currentItem.isRead = "Yes";
-           let currentStatus = e.target.parentElement.previousElementSibling.lastElementChild;
-           currentStatus.textContent = "Yes"
-        }
-    })
+    toggle.addEventListener('change', switchReadStatus)
 })
 
 }
@@ -198,4 +182,25 @@ function removeItem(e) {
         
     })
     myLibrary.splice(removed, 1)
+}
+
+
+// Switch read status
+
+function switchReadStatus(e) {
+    let currentCard = e.currentTarget.parentElement;
+    let currentItem = myLibrary.find(item => {
+        return item.id === +currentCard.dataset.id;
+    })
+
+    if(currentItem.isRead === "Yes") {
+        currentItem.isRead = "No";
+        let currentStatus = e.target.parentElement.previousElementSibling.lastElementChild;
+        currentStatus.textContent = "No";
+    }
+    else if (currentItem.isRead === "No") {
+        currentItem.isRead = "Yes";
+       let currentStatus = e.target.parentElement.previousElementSibling.lastElementChild;
+       currentStatus.textContent = "Yes"
+    }
 }
