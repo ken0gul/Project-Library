@@ -6,11 +6,8 @@ const inputIsRead = document.querySelector('#read');
 const addBtn = document.querySelector('.add-button > button');
 const container = document.querySelector('.container');
 const plusIcon = document.querySelector('.plus-icon');
-
-// Global variables
 let isEditing = false;
-let index;
-let itemID;
+
 
 // Creating the first book or the array
 let myLibrary = [];
@@ -27,7 +24,9 @@ function Book(title,author,pages,isRead,id,isEdited) {
 
 // Function to take user's input and create an instance then store it to myLibrary array
 
-
+// Global Index
+let index;
+let itemID;
 function addBook(e) {
      itemID = new Date().getMilliseconds();
     if(myLibrary.length >= 8) return;
@@ -49,12 +48,9 @@ function addBook(e) {
 
     return newBook
 }
-
-    const wrapper = `<div class="wrapper"></div>`;
-    const header = document.querySelector('.header');
-    document.body.insertAdjacentHTML('beforeend', wrapper);
-
-    
+const wrapper = `<div class="wrapper"></div>`;
+ const header = document.querySelector('.header');
+    document.body.insertAdjacentHTML('beforeend', wrapper)
 
 function displayBooks() {
     let card;
@@ -105,23 +101,15 @@ function displayBooks() {
 
 
     function editItem(e) {
-        // Select the currentCard when clicked
         let currentCard = e.currentTarget.parentElement.parentElement;
-
-        // Get its data-id
         let currentCardID = e.currentTarget.parentElement.parentElement.dataset.id;
-
-        // Convert it to a number so that they match with book.id
         currentCardID = +currentCardID;
-
         myLibrary.forEach(book => {
             if(book.id === currentCardID) {
                 isEditing = true;
-
                 let wrapper= document.querySelector('.wrapper');
                 wrapper.style.display = 'none';
                 container.style.display = 'flex';
-
                 // Select each input to edit
                 let title = container.querySelector('input[id="title"]');
                 let author = container.querySelector('input[id="author"]');
@@ -132,9 +120,7 @@ function displayBooks() {
                 author.value = book.author;
                 pages.value = book.pages;
                 read.value = book.isRead;
-                
-                // Remove the current card to put a edited one instead
-                // The bug here is that id of the book changes everytime we edit it
+
                 currentCard.remove();
                 let removed = myLibrary.find(item => item.id === currentCardID);
                 myLibrary.splice(removed,1);
@@ -153,7 +139,17 @@ cardID.style.display = "flex";
 
 // Adding an event listener to cancel-icon
 cardID.querySelectorAll('.cancel-icon').forEach(el => {
-    el.addEventListener('click', removeItem);
+    el.addEventListener('click', (e) => {
+        const currentCard = e.currentTarget.parentElement;
+        currentCard.parentElement.remove()
+       let removed = myLibrary.find(item => {
+            let removed = item.id;
+            return removed;
+            
+        })
+        myLibrary.splice(removed, 1)
+        console.log(myLibrary)
+    })
 })
 
 //Adding an event listener to edit-icon
@@ -163,30 +159,32 @@ cardID.querySelectorAll('.edit-icon').forEach(el => {
 
 
 cardID.querySelectorAll('.switch').forEach(toggle => {
-    toggle.addEventListener('change', switchReadStatus)
+    toggle.addEventListener('change', e => {
+        let currentCard = e.currentTarget.parentElement;
+        let currentItem = myLibrary.find(item => {
+            return item.id === +currentCard.dataset.id;
+        })
+
+        if(currentItem.isRead === "Yes") {
+            currentItem.isRead = "No";
+            let currentStatus = e.target.parentElement.previousElementSibling.lastElementChild;
+            currentStatus.textContent = "No";
+        }
+        else if (currentItem.isRead === "No") {
+            currentItem.isRead = "Yes";
+           let currentStatus = e.target.parentElement.previousElementSibling.lastElementChild;
+           currentStatus.textContent = "Yes"
+        }
+    })
 })
 
 }
 
-// ESC Key Functionality / When pressed things turn to its original state
-document.addEventListener('keydown', e => {
-    if (e.key === 'Escape') {
-        let wrapper = document.querySelector('.wrapper')
-        container.style.display = 'none';
-        wrapper.style.display = 'grid';
-    } 
-})
-
-// Random click to add card
-document.addEventListener('click', () => {
-    let wrapper = document.querySelector('.wrapper')
-    container.style.display = 'flex';
-    wrapper.style.display = 'none';
-})
 
 
 
-// Add book event listener
+
+// Button functionality
 addBtn.addEventListener('click', addBook)
 
 // Plus Icon
@@ -196,38 +194,3 @@ plusIcon.addEventListener('click', () => {
     container.style.display = 'flex'
 
 })
-
-
-
-// Remove item function
-function removeItem(e) {
-    const currentCard = e.currentTarget.parentElement;
-    currentCard.parentElement.remove()
-   let removed = myLibrary.find(item => {
-        let removed = item.id;
-        return removed;
-        
-    })
-    myLibrary.splice(removed, 1)
-}
-
-
-// Switch read status
-
-function switchReadStatus(e) {
-    let currentCard = e.currentTarget.parentElement;
-    let currentItem = myLibrary.find(item => {
-        return item.id === +currentCard.dataset.id;
-    })
-
-    if(currentItem.isRead === "Yes") {
-        currentItem.isRead = "No";
-        let currentStatus = e.target.parentElement.previousElementSibling.lastElementChild;
-        currentStatus.textContent = "No";
-    }
-    else if (currentItem.isRead === "No") {
-        currentItem.isRead = "Yes";
-       let currentStatus = e.target.parentElement.previousElementSibling.lastElementChild;
-       currentStatus.textContent = "Yes"
-    }
-}
