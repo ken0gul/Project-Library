@@ -8,7 +8,14 @@ const container = document.querySelector('.container');
 const plusIcon = document.querySelector('.plus-icon');
 let isEditing = false;
 
+// When the page loads hide wrapper and show container
+document.addEventListener("DOMContentLoaded", () => {
+    let wrapper = document.querySelector('.wrapper');
+    wrapper.style.display = 'none';
 
+    let container = document.querySelector('.container');
+    container.style.display = 'grid';
+})
 // Creating the first book or the array
 let myLibrary = [];
 
